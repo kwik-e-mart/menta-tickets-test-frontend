@@ -11,6 +11,10 @@ const nextConfig = {
       },
     ];
   },
+  publicRuntimeConfig: {
+    name: process.env.NAME,
+    description: process.env.DESCRIPTION,
+  },
 }
 
 module.exports = nextConfig

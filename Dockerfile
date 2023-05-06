@@ -20,6 +20,7 @@ COPY . .
 ENV NEXT_TELEMETRY_DISABLED 1
 
 RUN yarn build
+RUN cd .next/standalone && sed -i -E 's/"#\{([^}]+)\}"/\1/g' server.js
 
 FROM base AS runner
 WORKDIR /app

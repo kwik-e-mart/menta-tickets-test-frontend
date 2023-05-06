@@ -2,10 +2,20 @@ import Head from 'next/head'
 import Image from 'next/image'
 import { Inter } from 'next/font/google'
 import styles from '@/styles/Home.module.css'
+import getConfig from 'next/config';
 
 const inter = Inter({ subsets: ['latin'] })
 
+// Needed to SSR and fetch envs from server
+export async function getServerSideProps() {
+  return {}
+}
+
 export default function Home() {
+
+  // Runtime config that access values from env variables
+  const { publicRuntimeConfig: config } = getConfig();
+
   return (
     <>
       <Head>
@@ -20,6 +30,8 @@ export default function Home() {
             Get started by editing&nbsp;
             <code className={styles.code}>src/pages/index.js</code>
           </p>
+          <p>NAME config is: {config.name}</p>
+          <p>DESCRIPTION config is: {config.description}</p>
           <div>
             <a
               href="https://nullplatform.com"
